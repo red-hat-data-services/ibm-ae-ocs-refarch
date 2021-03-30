@@ -1,0 +1,54 @@
+
+{
+        "engine": {
+                "type": "spark",
+                "template_id": "spark-2.4.0-jaas-v2-cp4d-template",
+                "conf": {
+                        "spark.app.name": "tera-sort-4000g",
+                        "spark.hadoop.fs.cos.myocs.access.key": "S3user1",
+                        "spark.hadoop.fs.cos.myocs.secret.key": "S3user1key",
+                        "spark.hadoop.fs.cos.myocs.endpoint": "http://ocs-s3-service.openshift-storage.svc.cluster.local",
+                        "spark.hadoop.fs.s3a.buffer.dir":"/home/spark/s3a-buffer",
+                        "spark.hadoop.fs.cos.multipart.size": "104900000",
+                        "spark.hadoop.fs.cos.threads.max": "500",
+                        "spark.hadoop.fs.cos.block.size": "256",
+                        "spark.shuffle.compress":"true",
+                        "spark.shuffle.spill.compress":"true",
+                        "spark.io.compression.codec":"zstd",
+                        "spark.io.compression.zstd.level":"1",
+                        "spark.sql.broadcastTimeout": "3600",
+                        "spark.network.timeout":"1500s",
+                        "spark.shuffle.io.maxRetries":"10",
+                        "spark.shuffle.io.retryWait":"10s",
+                        "spark.shuffle.io.backLog":"8192",
+                        "spark.shuffle.io.serverThreads":"64",
+                        "spark.shuffle.io.clientThreads":"64",
+                        "spark.shuffle.io.threads":"64",
+                        "spark.rpc.io.serverThreads":"64",
+                        "spark.rpc.io.clientThreads":"64",
+                        "spark.rpc.io.threads":"64",
+"spark.serializer":"org.apache.spark.serializer.KryoSerializer",
+                        "spark.kryoserializer.buffer":"1mb",
+                        "spark.kryoserializer.buffer.max":"128mb"
+                },
+                "env": {
+                        "SPARK_LOCAL_DIRS": "/home/spark"
+                },
+                "size": {
+                        "num_workers": 100,
+                        "worker_size": {
+                                "cpu": 8,
+                                "memory": "40g"
+                        },
+                        "driver_size": {
+                                "cpu": 5,
+                                "memory": "25g"
+                        }
+                }
+        },
+        "application_jar": "/home/spark/space/assets/data_asset/spark-terasort-1.2-SNAPSHOT-jar-with-dependencies.jar",
+        "application_arguments": ["cos://teragen.myocs/4000g", "cos://terasort.myocs/4000g"],
+        "main_class": "com.github.ehiggs.spark.terasort.TeraSort"
+}
+
+

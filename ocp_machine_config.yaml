@@ -1,0 +1,79 @@
+
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker-1-shuffle
+  name: 90-worker-1-shuffle-var-lib-containers
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 2.2.0
+    systemd:
+      units:
+      - contents: |
+          [Unit]
+          Description=Make raid0 /dev/md0 device
+          DefaultDependencies=no
+          BindsTo=dev-md0.device
+          After=dev-sda.device var.mount
+          Before=systemd-fsck@dev-sda.service
+          Before=shutdown.target
+
+          [Service]
+          Type=oneshot
+          RemainAfterExit=yes
+          ExecStart=/bin/bash -c "/sbin/mdadm --stop /dev/md127"
+          ExecStart=/bin/bash -c "/sbin/mdadm --zero-superblock /dev/nvme0n1"
+          ExecStart=/bin/bash -c "/sbin/wipefs -a /dev/nvme0n1"
+          ExecStart=/bin/bash -c '/bin/printf "o\nn\np\n1\n\n\np\nt\nfd\nw\n" | fdisk /dev/nvme0n1'
+          ExecStart=/bin/bash -c '/bin/printf "y" | mdadm -C /dev/md0 -l raid0 --force -n 1 /dev/nvme0n1'
+          ExecStart=/bin/bash -c "/bin/rm -rf /var/lib/containers/*"
+          ExecStart=/bin/chcon -t fixed_disk_device_t /dev/md0
+          ExecStart=/bin/bash -c "/sbin/mkfs.xfs /dev/md0 -f"
+          TimeoutSec=0
+
+          [Install]
+          WantedBy=var-lib-containers.mount
+        enabled: true
+        name: systemd-mkfs@dev-md0.service
+      - contents: |
+          [Unit]
+          Description=Mount /dev/md0 to /var/lib/containers
+          Before=local-fs.target
+          Requires=systemd-mkfs@dev-md0.service
+          After=systemd-mkfs@dev-md0.service
+
+          [Mount]
+          What=/dev/md0
+          Where=/var/lib/containers
+          Type=xfs
+          Options=defaults,prjquota
+
+          [Install]
+          WantedBy=local-fs.target
+        enabled: true
+        name: var-lib-containers.mount
+      - contents: |
+          [Unit]
+          Description=Restore recursive SELinux security contexts
+          DefaultDependencies=no
+          After=var-lib-containers.mount
+          Before=shutdown.target
+
+          [Service]
+          Type=oneshot
+          RemainAfterExit=yes
+          ExecStart=/sbin/restorecon -R /var/lib/containers/
+          TimeoutSec=0
+
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: restorecon-var-lib-containers.service
+
+

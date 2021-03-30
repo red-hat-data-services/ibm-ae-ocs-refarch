@@ -1,0 +1,80 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocs-s3-service-optane
+spec:
+ ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ocs-s3-service-optane
+subsets:
+  - addresses:
+    - ip: 192.168.7.50
+    ports:
+    - port: 8080
+  - addresses:
+    - ip: 192.168.7.50
+    ports:
+    - port: 8081
+  - addresses:
+    - ip: 192.168.7.50
+    ports:
+    - port: 8082
+  - addresses:
+    - ip: 192.168.7.50
+    ports:
+    - port: 8083
+  - addresses:
+    - ip: 192.168.7.51
+    ports:
+    - port: 8080
+  - addresses:
+    - ip: 192.168.7.51
+    ports:
+    - port: 8081
+  - addresses:
+    - ip: 192.168.7.51
+    ports:
+    - port: 8082
+  - addresses:
+    - ip: 192.168.7.51
+    ports:
+    - port: 8083
+  - addresses:
+    - ip: 192.168.7.52
+    ports:
+    - port: 8080
+  - addresses:
+    - ip: 192.168.7.52
+    ports:
+    - port: 8081
+  - addresses:
+    - ip: 192.168.7.52
+    ports:
+    - port: 8082
+  - addresses:
+    - ip: 192.168.7.52
+    ports:
+    - port: 8083
+  - addresses:
+    - ip: 192.168.7.53
+    ports:
+    - port: 8080
+  - addresses:
+    - ip: 192.168.7.53
+    ports:
+    - port: 8081
+  - addresses:
+    - ip: 192.168.7.53
+    ports:
+    - port: 8082
+  - addresses:
+    - ip: 192.168.7.53
+    ports:
+    - port: 8083
