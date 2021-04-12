@@ -1,0 +1,5 @@
+---
+dummy:
+copy_admin_key: true
+ceph_osd_docker_memory_limit: 10g
+ceph_osd_docker_cpu_limit: 5

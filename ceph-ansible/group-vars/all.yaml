@@ -1,0 +1,81 @@
+---
+bootstrap_dirs_owner: "167"
+bootstrap_dirs_group: "167"
+fetch_directory: ~/ceph-ansible-keys
+configure_firewall: False
+ceph_repository_type: cdn
+ceph_origin: repository
+ceph_repository: rhcs
+ceph_rhcs_version: 4
+ceph_iscsi_config_dev: false
+monitor_interface: bond0
+public_network: 192.168.7.0/24
+cluster_network: 192.168.7.0/24
+radosgw_civetweb_port: 80
+radosgw_civetweb_num_threads: 1024
+radosgw_thread_pool_size: 1024
+radosgw_interface: bond0
+radosgw_num_instances: 4
+ceph_conf_overrides:
+  global:
+    mon_allow_pool_delete: true
+    mon_max_pg_per_osd: 1000
+    ms_dispatch_throttle_bytes: 1048576000
+    objecter_inflight_op_bytes: 1048576000
+    objecter_inflight_ops: 5120
+    osd_enable_op_tracker: False
+    max_open_files: 500000
+    log_file: "/dev/null"
+    bluefs_buffered_io: false
+    rgw_list_buckets_max_chunk: 999999
+    osd_op_thread_timeout: 900
+    osd_op_thread_suicide_timeout: 2000
+    osd_memory_target: 4294967296
+    osd_pool_default_crush_rule: -1
+    osd_pool_default_size: 2
+    debug_rgw: 0
+    debug_rgw_sync: 0
+    bluestore_min_alloc_size_hdd: 4096
+ceph_docker_image: "rhceph/rhceph-4-rhel8"
+ceph_docker_image_tag: "4-33"
+ceph_docker_registry: "registry.redhat.io"
+ceph_docker_registry_auth: true
+ceph_docker_registry_username: "6340056|rhcs"
+ceph_docker_registry_password: eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJlZjk5ZWJmMWVhMDg0YWJlOWEwMWVmNjA1NjA0NjUxNiJ9.BeBz7hxDPL8Hqa545_MTwySfkztq79wi3cAj_r1m58_pQmt6L
+Xunc4nC1Y9oU7-rOGKPBXHyvucKQTgn-asgeu2_xYYvljV9cvqrEaL0fZ6kYyAmKOfPnQAF5brhFLcrgrUxhUBrAcD76Gmq9jMUJDyhlZjScyX1u51iQDbPVVd8LayBwXGnjuYe4Ynp9pDh3SXlxImaEfVRF9d
+68nkr-_p2bL42MkjpvYBZZeWIW3pEckU2wJFr1wCOoUZ0L6c9_FUiSS5_d8HQZNc67F3ya3SISGit-ulNRa2aP1ETsZrTh4K8I4xdoqvctBypHNa-7KSpv4hJZ1SQ4akyBZ4hojKLYFAx8ThXHZ40vb29HwDTS
+pZjGO_ukZMzECyCBbQ4U6270yA6ngJugZ1HS3zgVlSI1AZT6EpU_Uxs5LU06HuSyO8708OMbNDL5yuGc87sy-HdSPQ32d-EpAR-0-_BhrFDqvDXcY3u_M14s3bmwU351EWzIRlu5X2_6r0YCIyFttS_Ymamg7Y
+ISRF451bfMKKz7F37LNBqqzOEgHFiyuh8nppr9pZk3Msu87wMOajNf3S045bLGDs8UF6rkkKn1LUoShVYBPxJB9nzNdvCfxvN9MeaYdygIxcsfrMO9AycgjlrOpqp2FGpmUeZRuj9Mtep0KL5a5I4tGZ0GNAlz
+Gc
+containerized_deployment: True
+dashboard_enabled: True
+dashboard_protocol: http
+dashboard_port: 8443
+dashboard_admin_user: admin
+dashboard_admin_user_ro: false
+dashboard_admin_password: admin
+node_exporter_container_image: registry.redhat.io/openshift4/ose-prometheus-node-exporter:v4.1
+node_exporter_port: 9100
+grafana_admin_user: admin
+grafana_admin_password: admin
+grafana_container_image: registry.redhat.io/rhceph/rhceph-4-dashboard-rhel8:4
+grafana_dashboard_files:
+  - ceph-cluster.json
+  - cephfs-overview.json
+  - host-details.json
+  - hosts-overview.json
+  - osd-device-details.json
+  - osds-overview.json
+  - pool-detail.json
+  - pool-overview.json
+  - radosgw-detail.json
+  - radosgw-overview.json
+  - rbd-overview.json
+grafana_plugins:
+  - vonage-status-panel
+  - grafana-piechart-panel
+grafana_allow_embedding: True
+prometheus_container_image: registry.redhat.io/openshift4/ose-prometheus:4.1
+prometheus_port: 9092
+alertmanager_container_image: registry.redhat.io/openshift4/ose-prometheus-alertmanager:4.1
+alertmanager_port: 9093
