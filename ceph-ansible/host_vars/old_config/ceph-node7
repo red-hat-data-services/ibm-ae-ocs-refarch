@@ -1,0 +1,103 @@
+---
+radosgw_interface: ens785f0
+
+lvm_volumes:
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme2n1
+    db: ceph_db_lv_1
+    db_vg: ceph_db_wal_vg_nvme0n1
+    wal: ceph_wal_lv_1
+    wal_vg: ceph_db_wal_vg_nvme0n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme2n1
+    db: ceph_db_lv_2
+    db_vg: ceph_db_wal_vg_nvme0n1
+    wal: ceph_wal_lv_2
+    wal_vg: ceph_db_wal_vg_nvme0n1
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme3n1
+    db: ceph_db_lv_3
+    db_vg: ceph_db_wal_vg_nvme0n1
+    wal: ceph_wal_lv_3
+    wal_vg: ceph_db_wal_vg_nvme0n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme3n1
+    db: ceph_db_lv_4
+    db_vg: ceph_db_wal_vg_nvme0n1
+    wal: ceph_wal_lv_4
+    wal_vg: ceph_db_wal_vg_nvme0n1
+
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme4n1
+    db: ceph_db_lv_1
+    db_vg: ceph_db_wal_vg_nvme1n1
+    wal: ceph_wal_lv_1
+    wal_vg: ceph_db_wal_vg_nvme1n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme4n1
+    db: ceph_db_lv_2
+    db_vg: ceph_db_wal_vg_nvme1n1
+    wal: ceph_wal_lv_2
+    wal_vg: ceph_db_wal_vg_nvme1n1
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme5n1
+    db: ceph_db_lv_3
+    db_vg: ceph_db_wal_vg_nvme1n1
+    wal: ceph_wal_lv_3
+    wal_vg: ceph_db_wal_vg_nvme1n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme5n1
+    db: ceph_db_lv_4
+    db_vg: ceph_db_wal_vg_nvme1n1
+    wal: ceph_wal_lv_4
+    wal_vg: ceph_db_wal_vg_nvme1n1
+
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme6n1
+    db: ceph_db_lv_1
+    db_vg: ceph_db_wal_vg_nvme10n1
+    wal: ceph_wal_lv_1
+    wal_vg: ceph_db_wal_vg_nvme10n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme6n1
+    db: ceph_db_lv_2
+    db_vg: ceph_db_wal_vg_nvme10n1
+    wal: ceph_wal_lv_2
+    wal_vg: ceph_db_wal_vg_nvme10n1
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme7n1
+    db: ceph_db_lv_3
+    db_vg: ceph_db_wal_vg_nvme10n1
+    wal: ceph_wal_lv_3
+    wal_vg: ceph_db_wal_vg_nvme10n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme7n1
+    db: ceph_db_lv_4
+    db_vg: ceph_db_wal_vg_nvme10n1
+    wal: ceph_wal_lv_4
+    wal_vg: ceph_db_wal_vg_nvme10n1
+
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme8n1
+    db: ceph_db_lv_1
+    db_vg: ceph_db_wal_vg_nvme11n1
+    wal: ceph_wal_lv_1
+    wal_vg: ceph_db_wal_vg_nvme11n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme8n1
+    db: ceph_db_lv_2
+    db_vg: ceph_db_wal_vg_nvme11n1
+    wal: ceph_wal_lv_2
+    wal_vg: ceph_db_wal_vg_nvme11n1
+  - data: ceph_data_lv_1
+    data_vg: ceph_data_vg_nvme9n1
+    db: ceph_db_lv_3
+    db_vg: ceph_db_wal_vg_nvme11n1
+    wal: ceph_wal_lv_3
+    wal_vg: ceph_db_wal_vg_nvme11n1
+  - data: ceph_data_lv_2
+    data_vg: ceph_data_vg_nvme9n1
+    db: ceph_db_lv_4
+    db_vg: ceph_db_wal_vg_nvme11n1
+    wal: ceph_wal_lv_4
+    wal_vg: ceph_db_wal_vg_nvme11n1
